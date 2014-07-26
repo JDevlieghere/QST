@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "QST",
+  "description": "Quote, Shorten, Tweet",
+  "version": "1.0",
+  "permissions": [
+    "contextMenus",
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+  },
+  "background": {
+    "script": ["jquery.js", "background.js"]
+  }
+}
