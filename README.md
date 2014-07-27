@@ -9,6 +9,6 @@ Shortening requires a [Bitly](bitly.com) account but is totally optional. Custom
 
 [QST in the Google Chrome Web Store](https://chrome.google.com/webstore/detail/mejjcabmfjjomljbfcboglenpmilidmb)
 
-## Screen Shots
+## Screenshots
 
 ![QST Options](http://i.imgur.com/CcM1SKR.png)
