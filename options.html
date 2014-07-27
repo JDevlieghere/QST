@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>QST Configuration</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>QST Options</h1>
+		<div id="response"></div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Bit.ly Configuration</h3>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" action="#" id="bitly">
+				<fieldset>
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="username">Bitly Username</label>
+				  <div class="col-md-4">
+				  	<input id="username" name="username" type="text" placeholder="username" class="form-control input-md" required="">
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="apikey">Bitly API Key</label>
+				  <div class="col-md-4">
+				  	<input id="apikey" name="apikey" type="text" placeholder="api key" class="form-control input-md" required="">
+				  </div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="save"></label>
+					<div class="col-md-4">
+					<button id="save" name="save" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+
+				</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="options.js"></script>
+</body>

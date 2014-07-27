@@ -1,43 +1,52 @@
-var username;
-var api_key;
-load();
+var userName;
+var apiKey;
 
-function load(){
-    chrome.storage.local.get('username', function (result) {
-    	username = result.username
-    }
-    chrome.storage.local.get('api_key', function (result) {
-    	api_key = result.api_key
-    }
-}
+$(document).ready(function() {
+	chrome.storage.sync.get('userName', function (result) {
+		userName = result.userName
+	});
+	chrome.storage.sync.get('apiKey', function (result) {
+		apiKey = result.apiKey
+	});
+	chrome.contextMenus.create({
+		"title": "Quote, Shorten, Tweet",
+		"contexts": ["page", "selection", "image", "link"],
+		"onclick" : qst
+	});
+});
 
 function qst(info){
 	var selection = info.selectionText;
-	chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
-		function(tabs){
-			var url = tabs[0].url
-			shorten(url, username, api_key, function(url){
-				tweet(selection, url);
-			})
-		}
-	);
+	var pageUrl = info.pageUrl;
+	shorten(pageUrl, userName, apiKey, function(url){
+		tweet(selection, url);
+	});
 }
 
 function tweet(text, url){
 	var twitter = "https://twitter.com/intent/tweet?source=webclient&text=";
-	var sep = " ";
-	window.open(twitter+text+sep+url,'_blank');
+	var string;
+	if(text){
+		var sep = " ";
+		var qt = '"';
+		string = qt+text+qt+sep+url
+	}else{
+		string = url;
+	}
+	window.open(twitter+string,'_blank');
 }
 
-function shorten(long_url, username, api_key, callback){
+function shorten(long_url, userName, apiKey, callback){
 	$.ajax({
-		url: "http://api.bit.ly/v3/shorten",
+		url: "https://api-ssl.bitly.com/v3/shorten",
 		data:{
 			longUrl:long_url,
-			apiKey:api_key,
-			login:username},
+			apiKey:apiKey,
+			login:userName},
 		dataType:"jsonp",
 	}).done(function(result){
 		callback(result.data.url)
+	}).error(function(result){
+		alert("Something went wrong...")
 	});
 }
