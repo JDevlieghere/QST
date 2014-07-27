@@ -10,8 +10,16 @@ $(document).ready(function() {
 $("button#save").click(function() {
 	var userName = $("input#username").val();
 	chrome.storage.sync.set({'userName': userName});
+
 	var apiKey = $("input#apikey").val();
 	chrome.storage.sync.set({'apiKey': apiKey});
-	$( "div#response").html('<div class="alert alert-success" role="alert">Bitly configuration stored.</div>');
+
+	success('Bitly configuration stored.');
+
 	return false;
 });
+
+function success(text){
+	$( "div#response").html('<div class="alert alert-success" role="alert">'+text+'</div>');
+
+}

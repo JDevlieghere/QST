@@ -1,13 +1,26 @@
 var userName;
 var apiKey;
 
+
 $(document).ready(function() {
+
 	chrome.storage.sync.get('userName', function (result) {
 		userName = result.userName
 	});
+
 	chrome.storage.sync.get('apiKey', function (result) {
 		apiKey = result.apiKey
 	});
+
+	chrome.storage.onChanged.addListener(function(changes, namespace){
+		if(changes['userName']){
+			userName = changes['userName'].newValue;
+		}
+		if(changes['apiKey']){
+			apiKey = changes['apiKey'].newValue;
+		}
+	});
+
 	chrome.contextMenus.create({
 		"title": "Quote, Shorten, Tweet",
 		"contexts": ["page", "selection", "image", "link"],
@@ -15,11 +28,19 @@ $(document).ready(function() {
 	});
 });
 
+function load(){
+
+}
+
 function qst(info){
 	var selection = info.selectionText;
 	var pageUrl = info.pageUrl;
-	shorten(pageUrl, userName, apiKey, function(url){
-		tweet(selection, url);
+	shorten(pageUrl, userName, apiKey, function(result){
+		if(result.status_code == 200){
+			tweet(selection, result.data.url);
+		}else{
+			tweet(selection, pageUrl)
+		}
 	});
 }
 
@@ -42,11 +63,8 @@ function shorten(long_url, userName, apiKey, callback){
 		data:{
 			longUrl:long_url,
 			apiKey:apiKey,
-			login:userName},
+			login:userName
+		},
 		dataType:"jsonp",
-	}).done(function(result){
-		callback(result.data.url)
-	}).error(function(result){
-		alert("Something went wrong...")
-	});
+	}).done(callback).error(callback);
 }
