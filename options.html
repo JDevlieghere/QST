@@ -3,57 +3,66 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 	<title>QST Options</title>
+
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link rel="stylesheet" href="bootstrap.min.css">
+
 	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
-		<h1>QST Options</h1>
-		<div id="response"></div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Bitly Configuration</h3>
-			</div>
-			<div class="panel-body">
-				<form class="form-horizontal" action="#" id="bitly">
-				<fieldset>
-				<div class="form-group">
-					<div class="row">
-						<label class="col-xs-4 control-label" for="username">Bitly Username</label>
-						<div class="col-xs-4">
-							<input id="username" name="username" type="text" placeholder="username" class="form-control input-md" required="">
-						</div>
-					</div>
+		<div class="col-md-6 col-md-offset-3">
+			<h1>QST Options</h1>
+			<div id="response"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">URL Shortening</h3>
 				</div>
-				<div class="form-group">
-					<div class="row">
-						<label class="col-xs-4 control-label" for="apikey">Bitly API Key</label>
-						<div class="col-xs-4">
-							<input id="apikey" name="apikey" type="text" placeholder="api key" class="form-control input-md" required="">
+				<div class="panel-body">
+			 		<div class="form-group row">
+				 		<div class="col-md-4">
+				 			<label class="control-label" for="username">Bitly Username</label>
 				 		</div>
-				 	</div>
-				</div>
-				<div class="form-group">
+				 		<div class="col-md-8">
+				 			<input id="username" name="username" type="text" placeholder="username" class="form-control input-md" required="">
+				 		</div>
+			 		</div>
+			 		<div class="form-group row">
+				 		<div class="col-md-4">
+				 			<label class="control-label" for="apikey">Bitly API Key</label>
+				 		</div>
+				 		<div class="col-md-8">
+				 			<input id="apikey" name="apikey" type="text" placeholder="api key" class="form-control input-md" required="">
+				 		</div>
+			 		</div>
+			 		<div class="form-group row">
+				 		<div class="col-md-8 col-md-offset-4">
+				 			<button id="save" name="save" class="btn btn-primary">Save</button>
+				 		</div>
+			 		</div>
 					<div class="row">
-						<label class="col-xs-4 control-label" for="save"></label>
-						<div class="col-xs-4">
-						<button id="save" name="save" class="btn btn-primary">Save</button>
+						<div class="col-xs-12">
+							<hr>
+							<p>Don't know your Bitly username and/or API key? Go to <a href="https://bitly.com/a/your_api_key" target="_blank">https://bitly.com/a/your_api_key</a> to find out.</p>
+							<p>Leave these fields blank to disable shortening URLs.</p>
 						</div>
 					</div>
-				</div>
-				</fieldset>
-				</form>
-				<div class="row">
-					<div class="col-xs-12">
-						<hr>
-						<p>Don't know your Bitly username and/or API key? Go to <a href="https://bitly.com/a/your_api_key" target="_blank">https://bitly.com/a/your_api_key</a> to find out. Leave these fields blank to disable shortening URLs.</p>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="control">
+		<footer class="text-center">
+			<ul class="list-inline">
+			  <li><a href="https://github.com/JDevlieghere/QST" target="_blank">QST on GitHub</a></li>
+			</ul>
+		</footer>
 	</div>
 	<script src="options.js"></script>
 </body>

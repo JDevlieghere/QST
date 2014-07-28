@@ -1,6 +1,7 @@
 var userName;
 var apiKey;
-
+var currVersion = getVersion();
+var prevVersion = localStorage['version']
 
 $(document).ready(function() {
 
@@ -28,9 +29,7 @@ $(document).ready(function() {
 	});
 });
 
-function load(){
 
-}
 
 function qst(info){
 	var selection = info.selectionText;
@@ -67,4 +66,28 @@ function shorten(long_url, userName, apiKey, callback){
 		},
 		dataType:"jsonp",
 	}).done(callback).error(callback);
+}
+
+function onInstall() {
+	chrome.tabs.create({url: "options.html"});
+}
+
+function onUpdate() {
+	console.log("Extension Updated");
+}
+
+function getVersion() {
+	var details = chrome.app.getDetails();
+	return details.version;
+}
+
+function checkInstall(){
+	if (currVersion != prevVersion) {
+		if (typeof prevVersion == 'undefined') {
+		  onInstall();
+		} else {
+		  onUpdate();
+		}
+		localStorage['version'] = currVersion;
+	}
 }

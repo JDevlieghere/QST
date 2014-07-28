@@ -14,12 +14,11 @@ $("button#save").click(function() {
 	var apiKey = $("input#apikey").val();
 	chrome.storage.sync.set({'apiKey': apiKey});
 
-	success('Bitly configuration stored.');
+	alertSuccess('Bitly configuration stored.');
 
 	return false;
 });
 
-function success(text){
-	$( "div#response").html('<div class="alert alert-success" role="alert">'+text+'</div>');
-
+function alertSuccess(text){
+	$( "div#response").html('<div class="alert alert-success" role="alert"><a href="#" class="close" data-dismiss="alert">&times;</a>'+text+'</div>');
 }
